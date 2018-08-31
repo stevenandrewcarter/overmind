@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    environment:
+    - http.host=0.0.0.0
+    - transport.host=127.0.0.1
+    - xpack.monitoring.collection.enabled=true
+    - xpack.security.enabled=true
+    ports: ['9200:9200']
