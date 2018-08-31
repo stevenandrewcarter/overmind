@@ -4,10 +4,6 @@ import {
   EuiPageHeader,
   EuiTitle,
   EuiPageBody,
-  EuiPageContent,
-  EuiPageContentHeader,
-  EuiPageContentBody,
-  EuiText,
   EuiHeaderBreadcrumbs
 } from '@elastic/eui';
 import { ClusterPageContent } from './cluster/ClusterPageContent';
@@ -25,12 +21,6 @@ export class Main extends React.Component {
        manage state and update your UI than this.
     */
     const { httpClient } = this.props;
-    httpClient.get('../api/overmind/example').then((resp) => {
-      this.setState({ time: resp.data.time });
-    });
-    httpClient.get('../api/overmind/nodes').then((resp) => {
-      this.setState({ nodes: resp.data });
-    });
     httpClient.get('../api/overmind/cluster').then((resp) => {
       this.setState({ cluster: resp.data });
     });
@@ -56,8 +46,6 @@ export class Main extends React.Component {
     }];
     const { title } = this.props;
     const cluster = this.state.cluster || {};
-    const nodes = this.state.nodes || {};
-    console.log(cluster);
     return (
       <EuiPage>
         <EuiPageBody>
@@ -69,24 +57,7 @@ export class Main extends React.Component {
             {/*<EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} truncate={false} />*/}
           </EuiPageHeader>
           <ClusterPageContent cluster={cluster}/>
-          <NodePageContent nodes={nodes}/>
-          <EuiPageContent>
-            <EuiPageContentHeader>
-              <EuiTitle>
-                <h2>Congratulations</h2>
-              </EuiTitle>
-            </EuiPageContentHeader>
-            <EuiPageContentBody>
-              <EuiText>
-                <h3>You have successfully created your first Kibana Plugin!</h3>
-                <p>The server time (via API call) is {this.state.time || 'NO API CALL YET'}</p>
-              </EuiText>
-              <EuiText>
-                <h3>Nodes</h3>
-                <p>{ JSON.stringify(nodes) || 'NO API CALL YET'}</p>
-              </EuiText>
-            </EuiPageContentBody>
-          </EuiPageContent>
+          <NodePageContent httpClient={this.props.httpClient}/>
         </EuiPageBody>
       </EuiPage>
     );

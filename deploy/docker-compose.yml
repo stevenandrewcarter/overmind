@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  master:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    env_file:
+    - elasticsearch/base.env
+    - elasticsearch/master.env
+    ports: ['9200:9200']
+    networks: ["elasticsearch"]
+
+  data-warm:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    env_file:
+    - elasticsearch/base.env
+    - elasticsearch/data.env
+    - elasticsearch/data-warm.env
+    networks: ["elasticsearch"]
+    depends_on: ["master"]
+
+  data-hot:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    env_file:
+    - elasticsearch/base.env
+    - elasticsearch/data.env
+    - elasticsearch/data-hot.env
+    networks: ["elasticsearch"]
+    depends_on: ["master"]
+
+networks:
+  elasticsearch:

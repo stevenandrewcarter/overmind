@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  EuiTitle,
+  EuiStat,
   EuiPageContent,
   EuiPageContentHeader,
   EuiPageContentBody,
@@ -10,6 +10,7 @@ import {
   EuiPanel,
   EuiHorizontalRule
 } from '@elastic/eui';
+import { ClusterTitle } from './ClusterTitle';
 
 export class ClusterPageContent extends React.Component {
   constructor(props) {
@@ -18,23 +19,21 @@ export class ClusterPageContent extends React.Component {
 
   render() {
     const cluster = this.props.cluster || {};
-    console.log(cluster);
     return (
       <EuiPageContent>
         <EuiPageContentHeader>
-          <EuiTitle>
-            <h2>Cluster - {cluster.cluster_name}</h2>
-          </EuiTitle>
+          <ClusterTitle cluster={cluster}/>
         </EuiPageContentHeader>
         <EuiPageContentBody>
           <EuiFlexGroup wrap>
             <EuiFlexItem style={{ minWidth: 300 }}>
               <EuiPanel>
                 <EuiText>
-                  <p>Name: {cluster.cluster_name}</p>
-                  <EuiHorizontalRule/>
-                  <p style={{ color: cluster.status }}>Status: {cluster.status}</p>
                   <p>Timed Out: {cluster.timed_out}</p>
+                  <p>Pending Tasks: {cluster.number_of_pending_tasks}</p>
+                  <p>Number Of In Flight Fetch: {cluster.number_of_in_flight_fetch}</p>
+                  <p>Task Max waiting in Queue Milliseconds: {cluster.task_max_waiting_in_queue_millis}</p>
+                  <p>Active Shards percent: {cluster.active_shards_percent_as_number}</p>
                 </EuiText>
               </EuiPanel>
             </EuiFlexItem>
@@ -61,14 +60,6 @@ export class ClusterPageContent extends React.Component {
                 </EuiText>
               </EuiPanel>
             </EuiFlexItem>
-            <EuiFlexItem style={{ minWidth: 300 }}>
-              <EuiPanel>
-                <p>Pending Tasks: {cluster.number_of_pending_tasks}</p>
-              </EuiPanel>
-            </EuiFlexItem>
-            {/*number_of_in_flight_fetch	0*/}
-            {/*task_max_waiting_in_queue_millis	0*/}
-            {/*active_shards_percent_as_number	100*/}
           </EuiFlexGroup>
         </EuiPageContentBody>
       </EuiPageContent>
