@@ -3,7 +3,8 @@ import {
   EuiText,
   EuiPanel,
   EuiHorizontalRule,
-  EuiFlexItem
+  EuiFlexItem,
+  EuiTitle
 } from '@elastic/eui';
 import { NodeRole } from './NodeRole';
 import { NodeAttribute } from './NodeAttribute';
@@ -18,8 +19,12 @@ export class NodePanel extends React.Component {
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiPanel>
           <EuiText>
-            <p>Name: {this.props.node.name}</p>
-            <p>Transport Address: {this.props.node.transport_address}</p>
+            <EuiTitle size="m">
+              <h6>
+                <p>Name: {this.props.node.name}</p>
+                <p>Transport Address: {this.props.node.transport_address}</p>
+              </h6>
+            </EuiTitle>
             <EuiHorizontalRule/>
             <p>Roles</p>
             <div>

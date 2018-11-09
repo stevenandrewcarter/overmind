@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   master:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
     env_file:
     - elasticsearch/base.env
     - elasticsearch/master.env
@@ -9,7 +9,7 @@ services:
     networks: ["elasticsearch"]
 
   data-warm:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
     env_file:
     - elasticsearch/base.env
     - elasticsearch/data.env
@@ -18,7 +18,7 @@ services:
     depends_on: ["master"]
 
   data-hot:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
     env_file:
     - elasticsearch/base.env
     - elasticsearch/data.env

@@ -29,7 +29,7 @@ export class ClusterPageContent extends React.Component {
             <EuiFlexItem style={{ minWidth: 300 }}>
               <EuiPanel>
                 <EuiText>
-                  <p>Timed Out: {cluster.timed_out}</p>
+                  {/*<p>Timed Out: {cluster.timed_out}</p>*/}
                   <p>Pending Tasks: {cluster.number_of_pending_tasks}</p>
                   <p>Number Of In Flight Fetch: {cluster.number_of_in_flight_fetch}</p>
                   <p>Task Max waiting in Queue Milliseconds: {cluster.task_max_waiting_in_queue_millis}</p>

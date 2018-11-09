@@ -53,7 +53,7 @@ export class Main extends React.Component {
             <EuiTitle size="l">
               <h1>{title}</h1>
             </EuiTitle>
-            <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} />
+            {/*<EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} />false*/}
             {/*<EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} truncate={false} />*/}
           </EuiPageHeader>
           <ClusterPageContent cluster={cluster}/>
